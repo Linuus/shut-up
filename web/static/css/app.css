@@ -6,3 +6,11 @@
   padding: 10px 20px;
   border: 1px solid #eee;
 }
+
+#users {
+  margin-top: 20px;
+}
+
+#user-list li {
+  list-style: none;
+}

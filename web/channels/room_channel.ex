@@ -1,5 +1,6 @@
 defmodule ShutUp.RoomChannel do
   use ShutUp.Web, :channel
+  alias ShutUp.Presence
   require Logger
 
   def join("room:lobby", payload, socket) do
@@ -17,6 +18,15 @@ defmodule ShutUp.RoomChannel do
   end
 
   def handle_info({:after_join, msg}, socket) do
+    # Track the user's presence
+    Presence.track(socket, socket.assigns[:user], %{
+      device: "browser",
+      online_at: inspect(:os.timestamp())
+    })
+
+    # Push the presence state to the socket
+    push socket, "presence_state", Presence.list(socket)
+
     broadcast! socket, "user:entered", %{user: socket.assigns[:user]}
     push socket, "join", %{status: "connected"}
     {:noreply, socket}
