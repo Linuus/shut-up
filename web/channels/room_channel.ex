@@ -13,7 +13,6 @@ defmodule ShutUp.RoomChannel do
 
   def handle_in("new:msg", msg, socket) do
     broadcast socket, "new:msg", %{user: socket.assigns[:user], body: msg["body"]}
-    broadcast socket, "new:msg", %{user: "System", body: "Silenzio!" }
     {:reply, {:ok, %{msg: msg["body"]}}, socket}
   end
 

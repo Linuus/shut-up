@@ -27,6 +27,7 @@ let initiateChat = (username) => {
   $status.show()
   $messages.show()
   $input.show()
+  $input.focus()
 
   let sanitize = (html) => { return $("<div/>").text(html).html() }
 
