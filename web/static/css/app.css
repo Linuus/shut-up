@@ -1,5 +1,9 @@
 /* This file is for your main application css. */
 
+body {
+  margin-top: 120px;
+}
+
 #messages {
   margin-top: 20px;
   margin-bottom: 20px;
