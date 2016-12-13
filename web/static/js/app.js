@@ -89,6 +89,7 @@ let initiateChat = (username) => {
   // and we'll handle the messages over the channel to sync our state and render
   // our presences.
   chan.on("presence_state", state => {
+    console.log(state);
     presences = Presence.syncState(presences, state);
     render(presences);
   });
@@ -96,6 +97,7 @@ let initiateChat = (username) => {
   // We also need to handle a `presence_diff` event, which is how we get updates
   // on users being added and removed.
   chan.on("presence_diff", diff => {
+    console.log(diff);
     presences = Presence.syncDiff(presences, diff);
     render(presences);
   });
